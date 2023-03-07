@@ -1,11 +1,10 @@
 import time
 import pandas as pd
-import numpy as np
 import difflib
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_FILENAMES = {'chicago': 'chicago.csv',
+                  'new york city': 'new_york_city.csv',
+                  'washington': 'washington.csv'}
 
 def get_filters():
     """
@@ -22,14 +21,14 @@ def get_filters():
     
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     print('\nGiven below is the list of cities with available data:') 
-    print('\n'.join(city.title() for city in CITY_DATA.keys()))
+    print('\n'.join(city.title() for city in CITY_FILENAMES.keys()))
     
     while True:
         city = input('\nEnter the name of the city to be analyzed: ')
             
-        if city not in CITY_DATA.keys():
+        if city not in CITY_FILENAMES.keys():
             try:
-                city = difflib.get_close_matches(city, CITY_DATA.keys())[0]
+                city = difflib.get_close_matches(city, CITY_FILENAMES.keys())[0]
                 print('Filtering data for {}.'.format(city.title()))
                 break
             except:
@@ -86,7 +85,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     
-    df = pd.read_csv(CITY_DATA[city.lower()])    
+    df = pd.read_csv(CITY_FILENAMES[city.lower()])    
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     
     if 'month' not in df.columns:
@@ -217,14 +216,14 @@ def user_stats(df):
     # Display counts of user types
     user_types = df['User Type'].value_counts()
     print('There are {} types of users in the database:'.format(len(user_types)))
-    for user, value in user_types.iteritems():
+    for user, value in user_types.items():
         print('{} {}(s).'.format(value, user.lower()))
     
     # Display counts of gender
     print('\nGender:')
     try:
         genders = df['Gender'].value_counts()
-        for gender, value in genders.iteritems():
+        for gender, value in genders.items():
             print('{} users were {}.'.format(value, gender.lower()))
     except:
         print('Gender data unavailable for the selected filters.')
