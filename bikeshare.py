@@ -215,14 +215,14 @@ def user_stats(df):
     # Display counts of user types
     user_types = df['User Type'].value_counts()
     print('There are {} types of users in the database:'.format(len(user_types)))
-    for user, value in user_types.iteritems():
+    for user, value in user_types.items():
         print('{} {}(s).'.format(value, user.lower()))
     
     # Display counts of gender
     print('\nGender:')
     try:
         genders = df['Gender'].value_counts()
-        for gender, value in genders.iteritems():
+        for gender, value in genders.items():
             print('{} users were {}.'.format(value, gender.lower()))
     except:
         print('Gender data unavailable for the selected filters.')
