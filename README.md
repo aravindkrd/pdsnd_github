@@ -9,6 +9,7 @@ Bikeshare data analysis
 ### Description
 The Python script can be used to analyze bikeshare data. The user will be prompted to enter keywords like city, month and day to filter the data to be analyzed.
 The script then displays useful statistics like most frequent times of travel, popular stations and other user information.
+The user can see the raw data if requested at prompt.
 
 ### Files used
 - bikeshare.py The Python script that analyzes bikeshare data
